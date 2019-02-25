@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
 import * as React from "react";
+import { useState, useEffect } from "react";
 
-export function FormInput({ onChange }: FormInputProps) {
+export function Form({ onSubmit }: FormInputProps) {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("1400");
 
-  useEffect(() => onChange({ origin, destination, date, time }));
+  useEffect(() => {
+    if (origin.length > 2 && destination.length > 2 && time.length === 4) {
+      onSubmit({ origin, destination, date, time });
+    }
+  }, [origin, destination, date, time]);
 
   return (
     <div>
@@ -19,13 +23,13 @@ export function FormInput({ onChange }: FormInputProps) {
   )
 }
 
+export interface FormInputProps {
+  onSubmit: (form: FormData) => any
+}
+
 export interface FormData {
   origin: string,
   destination: string,
   date: Date,
   time: string
-}
-
-export interface FormInputProps {
-  onChange: (input: FormData) => any;
 }
