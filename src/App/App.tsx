@@ -4,8 +4,9 @@ import { Form, FormData } from "./Form/Form";
 import { useState } from "react";
 import { Results } from "./Results/Results";
 import "./App.css";
+import { StopData } from "./Form/StopSelector/StopSelector";
 
-export function App({ api }: AppProps) {
+export function App({ api, stops }: AppProps) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,12 +26,13 @@ export function App({ api }: AppProps) {
 
   return (
     <div className="App">
-      <Form onSubmit={onFormSubmit}/>
+      <Form onSubmit={onFormSubmit} stops={stops}/>
       <Results results={results} loading={loading}/>
     </div>
   )
 }
 
 export interface AppProps {
-  api: AxiosInstance
+  api: AxiosInstance,
+  stops: StopData
 }

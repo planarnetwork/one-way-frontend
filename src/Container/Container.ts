@@ -2,6 +2,8 @@ import Axios, { AxiosInstance } from "axios";
 import { Config } from "../Config/config";
 import { local } from "../Config/local";
 import { production } from "../Config/production";
+import { StopData } from "../App/Form/StopSelector/StopSelector";
+import stops from "../Data/stops.json";
 
 export class Container {
 
@@ -16,6 +18,10 @@ export class Container {
       case "local": return local;
       default: return production;
     }
+  }
+
+  public getStops(): StopData {
+    return stops;
   }
 
 }

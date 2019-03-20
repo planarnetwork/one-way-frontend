@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { StopData, StopSelector } from "./StopSelector/StopSelector";
 
-export function Form({ onSubmit }: FormInputProps) {
+export function Form({ onSubmit, stops }: FormInputProps) {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState(new Date());
@@ -15,8 +16,10 @@ export function Form({ onSubmit }: FormInputProps) {
 
   return (
     <div>
-      <input placeholder="origin" value={origin} onChange={e => setOrigin(e.target.value)} name="origin" type="text"/>
-      <input placeholder="destination" value={destination} onChange={e => setDestination(e.target.value)} name="destination" type="text"/>
+      <StopSelector id="origin" value={origin} onChange={setOrigin} stops={stops} />
+      <StopSelector id="destination" value={destination} onChange={setDestination} stops={stops} />
+      {/*<input placeholder="origin" value={origin} onChange={e => setOrigin(e.target.value)} name="origin" type="text"/>*/}
+      {/*<input placeholder="destination" value={destination} onChange={e => setDestination(e.target.value)} name="destination" type="text"/>*/}
       <input placeholder="date" value={date.toJSON().slice(0, 10)} onChange={e => setDate(new Date(e.target.value))} name="date" type="date"/>
       <input placeholder="time" value={time} onChange={e => setTime(e.target.value)} name="time" type="text"/>
     </div>
@@ -24,7 +27,8 @@ export function Form({ onSubmit }: FormInputProps) {
 }
 
 export interface FormInputProps {
-  onSubmit: (form: FormData) => any
+  onSubmit: (form: FormData) => any,
+  stops: StopData
 }
 
 export interface FormData {
