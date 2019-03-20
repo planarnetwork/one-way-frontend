@@ -1,11 +1,11 @@
 import * as React from "react";
-import axios from "axios";
+import { AxiosInstance } from "axios";
 import { Form, FormData } from "./Form/Form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Results } from "./Results/Results";
 import "./App.css";
 
-export function App() {
+export function App({ api }: AppProps) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +17,7 @@ export function App() {
       .map(kv => kv.join("="))
       .join("&");
 
-    const response = await axios("/jp?" + params);
+    const response = await api("/jp?" + params);
 
     setResults(response.data.data.journeys);
     setLoading(false);
@@ -29,4 +29,8 @@ export function App() {
       <Results results={results} loading={loading}/>
     </div>
   )
+}
+
+export interface AppProps {
+  api: AxiosInstance
 }
