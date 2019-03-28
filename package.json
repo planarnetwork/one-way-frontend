@@ -12,10 +12,11 @@
   },
   "homepage": "https://one-way.to",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "update-stops": "node ./bin/create-stops-json.js",
     "predeploy": "npm run build",
     "deploy": "echo 'one-way.to' > ./build/CNAME; gh-pages -d build"
   },

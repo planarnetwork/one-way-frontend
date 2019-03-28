@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance } from "axios";
 import { Config } from "../Config/config";
-import { local } from "../Config/local";
+import { development } from "../Config/development";
 import { production } from "../Config/production";
 import { StopData } from "../App/Form/StopSelector/StopSelector";
 import stops from "../Data/stops.json";
@@ -14,14 +14,14 @@ export class Container {
   }
 
   public get config(): Config {
-    switch (process.env.ENV) {
-      case "local": return local;
+    switch (process.env.NODE_ENV) {
+      case "development": return development;
       default: return production;
     }
   }
 
   public getStops(): StopData {
-    return stops;
+    return stops as StopData;
   }
 
 }

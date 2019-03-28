@@ -1,8 +1,8 @@
 
-import * as stops from "../Data/stops.json";
+import stops from "../Data/stops.json";
 
-const stopNames: Record<string, string> = stops.data.reduce((index, stop) => {
-  index[stop.id] = stop.name;
+const stopNames: Record<string, string> = stops.reduce((index, [id, name]) => {
+  index[id] = name;
 
   return index;
 }, {} as Record<string, string>);

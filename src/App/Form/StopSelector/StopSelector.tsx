@@ -4,11 +4,11 @@ import './StopSelector.css';
 const Autosuggest = require("react-autosuggest");
 
 export function StopSelector({ id, value, stops, onChange }: StopSelectorProps) {
-  const [suggestions, setSuggestions] = useState(stops.data);
+  const [suggestions, setSuggestions] = useState(stops);
   const [inputValue, setInputValue] = useState('');
 
   const onSelectedChange = (event: any, { suggestion }: any) => {
-    onChange(suggestion.id);
+    onChange(suggestion[0]);
   };
 
   const onInputChange = (event: any, { newValue }: any) => {
@@ -18,15 +18,15 @@ export function StopSelector({ id, value, stops, onChange }: StopSelectorProps) 
   const onSuggestionsFetchRequested = ({ value } : any) => {
     const inputValue = value.trim().toUpperCase();
     const inputLength = inputValue.length;
-    const results = inputLength < 3 ? [] : stops.data.filter(l =>
-      (inputLength <= 4 && inputValue === l.code) || l.name.toUpperCase().startsWith(inputValue)
+    const results = inputLength < 3 ? [] : stops.filter(([id, name]) =>
+      name.toUpperCase().startsWith(inputValue)
     );
 
     setSuggestions(results);
   };
 
   const onSuggestionsClearRequested = () => {
-    setSuggestions(stops.data);
+    setSuggestions(stops);
   };
 
   return (
@@ -50,28 +50,19 @@ export function StopSelector({ id, value, stops, onChange }: StopSelectorProps) 
   );
 }
 
-function getSuggestionValue(suggestion: Stop) {
-  return suggestion.name;
+function getSuggestionValue([id, name]: Stop) {
+  return name;
 }
 
-function renderSuggestion(suggestion: Stop) {
+function renderSuggestion([id, name]: Stop) {
   return (
-    <span>{suggestion.name}</span>
+    <span>{name}</span>
   );
 }
 
-export interface StopData {
-  data: Stop[]
-}
+export type StopData = Stop[];
 
-export interface Stop {
-  name: string,
-  description: string,
-  longitude: string,
-  latitude: string,
-  id: string,
-  code: string
-}
+export type Stop = [string, string];
 
 export interface StopSelectorProps {
   id: string,
