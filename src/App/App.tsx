@@ -25,7 +25,7 @@ export function App({ api, stops }: AppProps) {
   }
 
   return (
-    <div className="App">
+    <div className="container App">
       <Form onSubmit={onFormSubmit} stops={stops}/>
       <Results results={results} loading={loading}/>
     </div>

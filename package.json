@@ -3,19 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.11.4",
-    "@types/react": "^16.8.8",
-    "@types/react-autosuggest": "^9.3.7",
-    "@types/react-dom": "^16.8.3",
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "react": "^16.8.4",
     "react-autosuggest": "^9.4.3",
     "react-dom": "^16.8.4",
-    "react-scripts": "^2.1.8",
-    "typescript": "^3.3.4000"
+    "react-scripts": "^2.1.8"
   },
-  "proxy": "http://localhost:8008/",
   "homepage": "https://one-way.to",
   "scripts": {
     "start": "react-scripts start",
@@ -23,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "echo 'one-way.to' > ./build/CNAME; gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,7 +29,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.11.4",
+    "@types/react": "^16.8.8",
     "@types/react-autosuggest": "^9.3.7",
-    "gh-pages": "^2.0.1"
+    "@types/react-dom": "^16.8.3",
+    "gh-pages": "^2.0.1",
+    "typescript": "^3.3.4000"
   }
 }

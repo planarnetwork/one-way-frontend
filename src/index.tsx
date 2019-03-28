@@ -5,6 +5,8 @@ import { App } from './App/App';
 import * as serviceWorker from './serviceWorker';
 import { Container } from "./Container/Container";
 
+import "bootstrap/dist/css/bootstrap-grid.min.css"
+
 const container = new Container();
 
 ReactDOM.render(<App api={container.getApi()} stops={container.getStops()}/>, document.getElementById('root'));

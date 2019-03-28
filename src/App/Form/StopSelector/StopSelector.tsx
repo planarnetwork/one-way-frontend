@@ -30,21 +30,23 @@ export function StopSelector({ id, value, stops, onChange }: StopSelectorProps) 
   };
 
   return (
-    <Autosuggest
-      highlightFirstSuggestion={true}
-      suggestions={suggestions}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      onSuggestionSelected={onSelectedChange}
-      inputProps={{
-        value: inputValue,
-        id: id,
-        placeholder: id,
-        onChange: onInputChange
-      }}
-    />
+    <div className="col-3">
+      <Autosuggest
+        highlightFirstSuggestion={true}
+        suggestions={suggestions}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        onSuggestionSelected={onSelectedChange}
+        inputProps={{
+          value: inputValue,
+          id: id,
+          placeholder: id,
+          onChange: onInputChange
+        }}
+      />
+    </div>
   );
 }
 

@@ -8,4 +8,6 @@ export function toTimeString(seconds: number) {
   return hoursPad + hours + ":" + minsPad + mins;
 }
 
-7200
+export function toMins(seconds: number) {
+  return Math.floor(seconds / 60) + " mins";
+}

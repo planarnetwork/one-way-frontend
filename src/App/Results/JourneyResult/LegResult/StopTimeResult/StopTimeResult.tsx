@@ -1,13 +1,13 @@
 
 import * as React from "react";
 import { toTimeString } from "../../../../../Util/time";
+import { stopName } from "../../../../../Util/stop";
 
 export function StopTimeResult({ stopTime }: StopTimeResultProps) {
   return (
     <li>
-      {stopTime.dropOff ? toTimeString(stopTime.arrivalTime) : "--:--"}
-      {stopTime.pickUp ? toTimeString(stopTime.departureTime) : "--:--"}
-      {stopTime.stop}
+      {stopTime.dropOff ? toTimeString(stopTime.arrivalTime) : toTimeString(stopTime.departureTime) }
+      {" " + stopName(stopTime.stop)}
     </li>
   );
 }

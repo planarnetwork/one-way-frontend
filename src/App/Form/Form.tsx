@@ -2,11 +2,13 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { StopData, StopSelector } from "./StopSelector/StopSelector";
 
+import "./Form.css";
+
 export function Form({ onSubmit, stops }: FormInputProps) {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState("1400");
+  const [time, setTime] = useState("0600");
 
   useEffect(() => {
     if (origin.length > 2 && destination.length > 2 && time.length === 4) {
@@ -15,13 +17,15 @@ export function Form({ onSubmit, stops }: FormInputProps) {
   }, [origin, destination, date, time]);
 
   return (
-    <div>
+    <div className="row Form">
       <StopSelector id="origin" value={origin} onChange={setOrigin} stops={stops} />
       <StopSelector id="destination" value={destination} onChange={setDestination} stops={stops} />
-      {/*<input placeholder="origin" value={origin} onChange={e => setOrigin(e.target.value)} name="origin" type="text"/>*/}
-      {/*<input placeholder="destination" value={destination} onChange={e => setDestination(e.target.value)} name="destination" type="text"/>*/}
-      <input placeholder="date" value={date.toJSON().slice(0, 10)} onChange={e => setDate(new Date(e.target.value))} name="date" type="date"/>
-      <input placeholder="time" value={time} onChange={e => setTime(e.target.value)} name="time" type="text"/>
+      <div className="col-3">
+        <input placeholder="date" value={date.toJSON().slice(0, 10)} onChange={e => setDate(new Date(e.target.value))} name="date" type="date"/>
+      </div>
+      <div className="col-3">
+        <input placeholder="time" value={time} onChange={e => setTime(e.target.value)} name="time" type="text"/>
+      </div>
     </div>
   )
 }

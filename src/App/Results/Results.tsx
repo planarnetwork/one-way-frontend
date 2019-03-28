@@ -5,7 +5,13 @@ export function Results({ results, loading }: FormResultsProps) {
   return (
     <div>
       <h1>Results</h1>
-      <div>{ loading ? "Loading" : results.map((j, i) => <JourneyResult key={i} journey={j} />)}</div>
+      <div>{
+        loading
+          ? "Loading"
+          : results.length === 0
+            ? "No results"
+            : results.map((j, i) => <JourneyResult key={i} journey={j} />)
+      }</div>
     </div>
   );
 }
