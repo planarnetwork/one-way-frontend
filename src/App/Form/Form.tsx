@@ -12,7 +12,7 @@ export function Form({ onSubmit, stops }: FormInputProps) {
 
   useEffect(() => {
     if (origin.length > 2 && destination.length > 2 && time.length === 4) {
-      onSubmit({ origin, destination, date, time });
+      onSubmit({ origin, destination, time, date: date.toISOString().substr(0, 10) });
     }
   }, [origin, destination, date, time]);
 
@@ -38,6 +38,6 @@ export interface FormInputProps {
 export interface FormData {
   origin: string,
   destination: string,
-  date: Date,
+  date: string,
   time: string
 }

@@ -19,7 +19,7 @@ export function StopSelector({ id, value, stops, onChange }: StopSelectorProps) 
     const inputValue = value.trim().toUpperCase();
     const inputLength = inputValue.length;
     const results = inputLength < 3 ? [] : stops.filter(([id, name]) =>
-      name.toUpperCase().startsWith(inputValue)
+      name.toUpperCase().includes(inputValue)
     );
 
     setSuggestions(results);
