@@ -22,6 +22,8 @@ export function StopSelector({ id, value, stops, onChange }: StopSelectorProps) 
       name.toUpperCase().includes(inputValue)
     );
 
+    results.sort((a, b) => a[1].length - b[1].length);
+
     setSuggestions(results);
   };
 
