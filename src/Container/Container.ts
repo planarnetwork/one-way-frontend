@@ -3,7 +3,7 @@ import { Config } from "../Config/config";
 import { development } from "../Config/development";
 import { production } from "../Config/production";
 import { StopData } from "../App/Form/StopSelector/StopSelector";
-import stops from "../Data/stops.json";
+import groups from "../Data/groups.json";
 
 export class Container {
 
@@ -20,8 +20,8 @@ export class Container {
     }
   }
 
-  public getStops(): StopData {
-    return stops as StopData;
+  public getStopGroups(): StopData {
+    return groups as StopData;
   }
 
 }

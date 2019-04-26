@@ -1,14 +1,23 @@
+#!/usr/bin/env node
 
 const Axios = require("axios");
 const { promisify } = require("util");
 const writeFile = promisify(require("fs").writeFile);
 
 async function run() {
+  await Promise.all([
+    getStops("stops"),
+    getStops("groups"),
+  ])
+}
+
+async function getStops(type) {
   const axios = Axios.create();
-  const response = await axios("http://localhost:8008/stops");
+  const response = await axios.get("http://localhost:8008/" + type);
   const json = response.data.data.map(stop => [stop.id, stop.name || stop.description]);
   const jsonString = JSON.stringify(json);
-  await writeFile(__dirname + "/../src/Data/stops.json", jsonString);
+
+  await writeFile(`${__dirname}/../src/Data/${type}.json`, jsonString);
 }
 
 run().catch(e => console.error(e));
